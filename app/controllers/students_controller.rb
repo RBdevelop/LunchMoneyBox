@@ -4,7 +4,7 @@ class StudentsController < ApplicationController
   # GET /students
   # GET /students.json
   def index
-    @students ||= Student.all
+    @students = Student.all
   end
 
   # GET /students/1
@@ -17,7 +17,7 @@ class StudentsController < ApplicationController
   	@student = Student.first_name
   end
 
- 
+
 
   # GET /students/new
   def new

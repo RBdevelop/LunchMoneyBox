@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
   resources :parents
 
+  resources :charges
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
