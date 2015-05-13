@@ -1,5 +1,14 @@
-<h1>New Student</h1>
+
+
+<% if parent_signed_in? %>
+Oh hey there  <%= current_parent.first_name %>  <%= link_to "Sign_out", destroy_parent_session_path, :method => 'delete' %></p>
+
+
+
+<h1>Lets add a new hungry Student</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Back', students_path %>
+<%= link_to 'Back', dashboard_overview_path %>
+
+<% end %>

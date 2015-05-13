@@ -36,5 +36,17 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 </body>
 
+<% if parent_signed_in? %>
+  <li>
+  <%= link_to('Logout', destroy_parent_session_path, :method => :delete) %>        
+  </li>
+<% else %>
+  <li>
+  <%= link_to('Login', parent_session_path)  %>  
+  </li>
+<% end %>
+
 </html>
+
+
 
