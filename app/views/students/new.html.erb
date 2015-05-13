@@ -1,4 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head ng-app="app">
+  <title>Lunchbox</title>
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"></link>
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"></link>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+ 
+  <nav class="navigation">
+    <div class="text-center navigation-text">
+      saconxepts.lunchbox.io
+    </div>
+  </nav>
+  <nav class="col-lg-12 navigation-bottom">
+    <div class="col-lg-4 col-md-4"><i class="fa fa-thumbs-o-up"></i>  SA Catering</div>
+    <div class="col-lg-4 col-md-4 text-center">
+        <h1>Account Dashboard</h1>
+    </div>
+  </nav>
 
+   
 
 <% if parent_signed_in? %>
 Oh hey there  <%= current_parent.first_name %>  <%= link_to "Sign_out", destroy_parent_session_path, :method => 'delete' %></p>
@@ -12,3 +34,5 @@ Oh hey there  <%= current_parent.first_name %>  <%= link_to "Sign_out", destroy_
 <%= link_to 'Back', dashboard_overview_path %>
 
 <% end %>
+
+</body>
