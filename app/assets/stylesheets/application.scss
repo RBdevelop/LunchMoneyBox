@@ -1,2 +1,83 @@
     @import 'bootstrap-sprockets';
     @import 'bootstrap';
+    @import 'bootstrap-sprockets';
+    @import 'bootstrap';
+
+.landing-button{
+  background: blue;
+  color: azure;
+  border-radius: 15px;
+  margin-top: 3em;
+  margin-bottom: 3em;
+}
+
+.landing-button>a:focus,
+.landing-button>a:hover{
+  color: azure; 
+}
+.text-center{
+  text-align: center;
+  margin: 0 auto;
+}
+.navigation{
+/*  height: 4em;*/
+  background:  rgb(51,122,183) !important;
+  color: azure;
+  font-size: 40px;
+}
+.navigation-text{
+  padding-top: 30px;
+  padding-bottom: 20px;
+}
+h2{
+  line-height: none !important; 
+}
+.navigation-bottom{
+  border-bottom: 2px solid lightgray;
+  background: white !important;
+  font-size: 30px;
+  line-height: 80px;
+}
+body{
+  background-color: #f8f8f8; 
+/*
+  width: auto;
+  height: auto;
+*/
+}
+.buttons{
+  margin-top: 4em;
+}
+.btn-xlarge {
+    padding: 18px 28px;
+    font-size: 32px;
+    line-height: normal;
+    -webkit-border-radius: 8px;
+       -moz-border-radius: 8px;
+            border-radius: 8px;
+}
+.panels{
+  margin-top: 5em; 
+}
+.student-row{
+  border-bottom: 2px solid lightgray; 
+  border-top: 2px solid lightgray; 
+  margin-top: 20px;
+  font-size: 30px;
+}
+.student-row:hover,
+.student-row:focus{
+  background-color: darkgray;
+}
+.date-text{
+  font-size: 20px; 
+}
+.meal-price{
+  color: orangered; 
+}
+.credit-text{
+  color: forestgreen;
+}
+.transaction-history{
+ border: 2px solid rgba(51,122,183,.8)
+}
