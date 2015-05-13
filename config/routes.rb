@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  get 'dashboard/overview'
+
+  get 'dashboard/activity'
+
+  get 'dashboard/credits'
+
+  get 'dashboard/debits'
+
+  get 'dashboard/reports'
+
   devise_for :parents
   resources :students
 
