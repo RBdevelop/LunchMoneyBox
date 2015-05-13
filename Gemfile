@@ -26,7 +26,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 #payment gem using this tutorial https://stripe.com/docs/checkout/guides/rails
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 
-gem 'whenever' , require:false
+
 
 
 
