@@ -1,6 +1,7 @@
 class DashboardController < ApplicationController
   before_action :authenticate_parent!
 
+  
   def overview
   end
 
