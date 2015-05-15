@@ -5,8 +5,6 @@ class DashboardController < ApplicationController
   end
 
   def activity
-    #@charges = current_parent.charges
-
   end
 
   def credits

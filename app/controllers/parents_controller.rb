@@ -21,7 +21,6 @@ class ParentsController < ApplicationController
   def edit
   end
 
-
   # POST /parents
   # POST /parents.json
   def create
