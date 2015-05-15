@@ -10,20 +10,21 @@
  
   <nav class="navigation">
     <div class="text-center navigation-text">
-      saconxepts.lunchbox.io
+      LunchMoneyBox.IO
     </div>
   </nav>
-  <nav class="col-lg-12 navigation-bottom">
-    <div class="col-lg-4 col-md-4"><i class="fa fa-thumbs-o-up"></i>  SA Catering</div>
-    <div class="col-lg-4 col-md-4 text-center">
-        <h1>Account Dashboard</h1>
-    </div>
-  </nav>
+  
+  
 
    
-
+<h3>
 <% if parent_signed_in? %> 
-Oh hey there  <%= current_parent.first_name %>  <%= link_to "Sign_out", destroy_parent_session_path, :method => 'delete' %></p>
+
+Oh hey there  <%= current_parent.first_name %> 
+</h3>
+<p> Not you? If so please <%= link_to "Sign_out", destroy_parent_session_path, :method => 'delete' %>
+</p>
+
 
 
 

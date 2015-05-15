@@ -16,7 +16,7 @@
   <nav class="col-lg-12 navigation-bottom">
     <div class="col-lg-4 col-md-4"><i class="fa fa-thumbs-o-up"></i>  SA Catering</div>
     <div class="col-lg-4 col-md-4 text-center">
-        <h1>Account Dashboard</h1>
+        <h1>Parent Account Dashboard</h1>
     </div>
   </nav>
 
@@ -36,27 +36,37 @@
   </div>
   
   <div class="col-lg-8 col-lg-offset-2">
+     <div class="col-lg-8 col-lg-offset-2 
++              col-md-8 col-md-offset-2 
++              col-sm-8 col-sm-offset-2
++              col-xs-12">
     <div class="panels sign-panel login-panel panel panel-default">
       <div class="panel-heading">
         <h1 class="text-center">Students</h1>
       </div>
-      <% current_parent.students.each do |student| %>
-      <%= student.first_name %> 
-      <% end %>
-
-
+      
       
       <div class="panel-body">
         <div class="student-rows">
-        	 
+        
+        
       <tr>
-        <td></td>
-          <a href="dashboard-2.html">
+          <td> 
             <div class="student-row col-lg-12">
-  
-            <span class="col-lg-6">{{balance}}</span>
+            <% current_parent.students.each do |student| %>
+            <%= student.first_name %> 
+            <% end %>
             </div>
-          </a>
+          </td>
+      
+          <td>
+            <a href="/dashboard/activity">
+            <div class="student-row col-lg-12">
+            <span class="col-lg-1">{{balance}}</span>
+            </div></a>
+          </td>
+      </tr>
+          
         </div>
       </div>
     </div>
