@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 <head ng-app="app">
@@ -33,6 +34,32 @@ Oh hey there  <%= current_parent.first_name %>  <%= link_to "Sign_out", destroy_
 
 <%= link_to 'Back', dashboard_overview_path %>
 
+=======
+<nav class="navigation">
+  <div class="text-center navigation-text">
+    saconxepts.lunchbox.io
+  </div>
+</nav>
+
+<% if parent_signed_in? %>
+<br>
+<p>Oh hey there,  <%= current_parent.first_name %></p>
+<p><%= link_to "Sign Out", destroy_parent_session_path, :method => 'delete' %></p>
+
+
+<div class="col-lg-4 col-lg-offset-4
+            col-md-4 col-md-offset-4
+            col-sm-8 col-sm-offset-2
+            col-xs-8 col-xs-offset-2">
+  <h1 class="text-center">Lets Add A New Hungry Student</h1>
+  <br>
+  <div class="text-center">
+    <%= render 'form' %>
+    <%= link_to 'Back', dashboard_overview_path %>
+  </div>
+
+</div>
+>>>>>>> 9169eedd14a5f689bdb4beab0b5ab3e0d4992b2a
 <% end %>
 
 </body>
