@@ -22,8 +22,9 @@
 
    <% if parent_signed_in? %>
 
-  <div class= "col-lg-4 col-md-4 text center"> <h1> Hi there <%= current_parent.first_name %>  
-    </h1>
+  <div class= "col-lg-4 col-md-4 text center"> <h1> Hi there  
+    <%=  current_parent.first_name %></h1>
+
     <p> Not you ? <%= link_to "Sign_out", destroy_parent_session_path, :method => 'delete' %> 
     </p>
   </div>
@@ -39,6 +40,11 @@
       <div class="panel-heading">
         <h1 class="text-center">Students</h1>
       </div>
+      <% current_parent.students.each do |student| %>
+      <%= student.first_name %> 
+      <% end %>
+
+
       
       <div class="panel-body">
         <div class="student-rows">

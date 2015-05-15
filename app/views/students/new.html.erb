@@ -22,7 +22,7 @@
 
    
 
-<% if parent_signed_in? %>
+<% if parent_signed_in? %> 
 Oh hey there  <%= current_parent.first_name %>  <%= link_to "Sign_out", destroy_parent_session_path, :method => 'delete' %></p>
 
 
