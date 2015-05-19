@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head ng-app="app">
-  <title>Lunchbox</title>
-  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"></link>
-  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"></link>
-  <link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<body>
- 
+
   <nav class="navigation">
     <div class="text-center navigation-text">
       LunchMoneyBox.IO
@@ -21,20 +12,71 @@
   </nav>
 
 
-<h2>
-<%= form_tag charges_path do %>
   <article>
     <label class="amount">
       <span>Amount: $10.00</span>
     </label>
   </article>
 
-  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-          data-description="Account Credit"
-          data-amount="1000"></script>
-  </h2>
-<% end %>
 
-</body>
-</html>
+  <button id="process-transaction" class="btn btn-primary btn-block">Submit Payment</button>
+  <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+  <script src="https://checkout.stripe.com/checkout.js"></script>
+
+
+
+<script>
+
+ $(document).ready(function() {
+
+   var handler = StripeCheckout.configure({
+     key: "<%=  Rails.configuration.stripe[:publishable_key] %>",
+     name: "LunchMoneyBox",
+     description: "A charge for a student meal",
+     amount: "1000",
+     currency: "USD",
+     panelLabel: "Submit Payment",
+     zipCode: true,
+     email: "<%=current_parent.email%>",
+     allowRememberMe: true,
+
+     token: function(token) {
+       console.log(token)
+       $('#payment-form').append('<input type="hidden" name="card_token" value="'+ token.id +'"/> ');
+       $.ajax({
+         type: "POST",
+         url: '<%= charges_path %>',
+         data: $('#payment-form').serialize()
+       })
+      .done(function() {
+        alert("Good JOB!")
+      })
+      .fail(function() {
+        alert("Something went wrong. Contact us at support@LunchMoneyBox.com");
+      })
+     }
+   });
+
+
+   $('#process-transaction').on('click', function(e) {
+      handler.open({
+        name: 'LunchMoneyBox',
+        description: 'LunchMoneyBox',
+        amount: 1000
+      });
+      e.preventDefault();
+   });
+
+
+   $(window).on('popstate', function() {
+     handler.close();
+   });
+
+
+
+});
+
+</script>
+
+
+
