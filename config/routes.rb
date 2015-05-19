@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'dashboard/overview'
+  get '/dashboard/overview' => 'dashboard#overview', as: :dashboard_overview_path
 
   get 'dashboard/activity'
 

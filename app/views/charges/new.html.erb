@@ -25,6 +25,7 @@
 
 
 
+
 <script>
 
  $(document).ready(function() {
@@ -46,10 +47,10 @@
        $.ajax({
          type: "POST",
          url: '<%= charges_path %>',
-         data: $('#payment-form').serialize()
+         data: {credit_card_token_id: token.id}
        })
       .done(function() {
-        alert("Good JOB!")
+        window.href.location = ("/dashboard/overview");
       })
       .fail(function() {
         alert("Something went wrong. Contact us at support@LunchMoneyBox.com");
