@@ -39,15 +39,16 @@ module StripeWrapper
                                             email: customer_email,
                                             source: token
                                             )
-        app_customer = Parent.update_attributes(stripe_id: customer.id)
+        app_customer.update_attributes(stripe_id: customer.id)
         app_customer.save
         @credit_card = Card.fetch_credit_card(app_customer.stripe_id, card.id)
       else
         customer = Stripe::Customer.retrieve(app_customer.stripe_id)
+        binding.pry
         if is_card_a_duplicate?(customer, card.fingerprint)
           @credit_card = Card.fetch_credit_card_by_fingerprint(app_customer.stripe_id, card.fingerprint)
         else
-          app_customer = Parent.update_attributes(stripe_id: customer.id)
+          app_customer.update_attributes(stripe_id: customer.id)
           app_customer.save
           @credit_card = Card.fetch_credit_card(app_customer.stripe_id, card.id)
         end
@@ -55,7 +56,6 @@ module StripeWrapper
 
       # update_credit_card_information(@credit_card)
       @customer = customer
-      binding.pry
       self
     rescue => e
       @errors << e.message
@@ -82,7 +82,6 @@ module StripeWrapper
 
 
     def set_transaction(amount, currency="USD", description=nil, statement_descriptor=nil)
-      binding.pry
       @amount, @currency, @description, @statement_descriptor = amount, currency, description, statement_descriptor
       self
     rescue => e
@@ -91,7 +90,6 @@ module StripeWrapper
     end
 
     def perform_transaction!
-
       @charge = Stripe::Charge.create(
                                       amount: @amount,
                                       currency: @currency,
@@ -101,7 +99,6 @@ module StripeWrapper
                                       statement_descriptor: @statement_descriptor
                                       # receipt_email: @customer.
                                       )
-      binding.pry
       @balanced_transaction = Stripe::BalanceTransaction.retrieve(@charge.balance_transaction)
       true
     rescue => e
