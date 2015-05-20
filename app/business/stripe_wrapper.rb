@@ -28,38 +28,34 @@ module StripeWrapper
       @charge = nil
     end
 
-    def create_or_update_customer_by_transaction_token(token, description, customer_params={})
+    def create_or_update_customer_by_transaction_token(token, description)
       transcation = Stripe::Token.retrieve(token)
       customer_email = transcation['email']
       card = OpenStruct.new(transcation['card'].to_hash)
-      app_customer = Customer.where(email: customer_email.to_s.downcase).first
-      unless app_customer
+      app_customer = Parent.where(email: customer_email.to_s.downcase).first
+      unless app_customer.stripe_id
         customer =  Stripe::Customer.create(
                                             description: description,
                                             email: customer_email,
                                             source: token
                                             )
-        app_customer = Customer.create(
-                                       email: customer_email,
-                                       stripe_id: customer.id
-                                       )
+        app_customer = Parent.update_attributes(stripe_id: customer.id)
+        app_customer.save
         @credit_card = Card.fetch_credit_card(app_customer.stripe_id, card.id)
       else
         customer = Stripe::Customer.retrieve(app_customer.stripe_id)
         if is_card_a_duplicate?(customer, card.fingerprint)
           @credit_card = Card.fetch_credit_card_by_fingerprint(app_customer.stripe_id, card.fingerprint)
         else
-          app_customer = Customer.create(
-                                         email: customer_email,
-                                         stripe_id: customer.id
-                                         )
+          app_customer = Parent.update_attributes(stripe_id: customer.id)
+          app_customer.save
           @credit_card = Card.fetch_credit_card(app_customer.stripe_id, card.id)
         end
       end
 
-      update_credit_card_information(@credit_card, customer_params)
+      # update_credit_card_information(@credit_card)
       @customer = customer
-
+      binding.pry
       self
     rescue => e
       @errors << e.message
@@ -68,23 +64,25 @@ module StripeWrapper
     def is_card_a_duplicate?(customer, fingerprint)
       customer.sources.data.map { |card| card['fingerprint'] }.include?(fingerprint)
     end
-    def update_credit_card_information(card, customer_params={})
-      card.address_city = customer_params['city']
-      card.address_country = customer_params['country'] || 'US'
-      card.address_line1 = customer_params['address_one']
-      card.address_line2 = (customer_params['address_two'].empty? ? nil : customer_params['address_two'].empty?)
-      card.address_state = customer_params['state']
-      card.address_zip = customer_params['zipcode']
-      card.name = "#{customer_params['first_name']} #{customer_params['last_name']}"
-      card.save
-    rescue => e
-      @errors << e.message
-      self
-    end
+
+    # def update_credit_card_information(card, customer_params={})
+    #   card.address_city = customer_params['city']
+    #   card.address_country = customer_params['country'] || 'US'
+    #   card.address_line1 = customer_params['address_one']
+    #   card.address_line2 = (customer_params['address_two'].empty? ? nil : customer_params['address_two'].empty?)
+    #   card.address_state = customer_params['state']
+    #   card.address_zip = customer_params['zipcode']
+    #   card.name = "#{customer_params['first_name']} #{customer_params['last_name']}"
+    #   card.save
+    # rescue => e
+    #   @errors << e.message
+    #   self
+    # end
 
 
 
     def set_transaction(amount, currency="USD", description=nil, statement_descriptor=nil)
+      binding.pry
       @amount, @currency, @description, @statement_descriptor = amount, currency, description, statement_descriptor
       self
     rescue => e
@@ -93,6 +91,7 @@ module StripeWrapper
     end
 
     def perform_transaction!
+
       @charge = Stripe::Charge.create(
                                       amount: @amount,
                                       currency: @currency,
@@ -102,6 +101,7 @@ module StripeWrapper
                                       statement_descriptor: @statement_descriptor
                                       # receipt_email: @customer.
                                       )
+      binding.pry
       @balanced_transaction = Stripe::BalanceTransaction.retrieve(@charge.balance_transaction)
       true
     rescue => e
