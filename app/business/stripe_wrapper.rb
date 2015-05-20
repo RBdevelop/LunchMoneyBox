@@ -44,7 +44,6 @@ module StripeWrapper
         @credit_card = Card.fetch_credit_card(app_customer.stripe_id, card.id)
       else
         customer = Stripe::Customer.retrieve(app_customer.stripe_id)
-        binding.pry
         if is_card_a_duplicate?(customer, card.fingerprint)
           @credit_card = Card.fetch_credit_card_by_fingerprint(app_customer.stripe_id, card.fingerprint)
         else
