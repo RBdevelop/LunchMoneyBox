@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   get 'dashboard/reports'
 
+ 
+
   devise_for :parents
   
   resources :students

@@ -12,11 +12,11 @@
   <nav class="navigation">
     <div class="text-center navigation-text">
       LunchMoneyBox
-    </div>
-    <p style='text-align:right; color:yellow'>
+    <span class="pull-right" style='color:yellow'>
+        Beta
+      </span>
       Beta
-    </p>
-    
+    </div>
   </nav>
 
   <nav class="col-lg-12 navigation-bottom">
@@ -70,12 +70,13 @@
             <a href="/dashboard/activity">
             <div class="student-row col-lg-12">
 
-            <span class="col-lg-1"><%=number_to_currency current_parent.total_funds%></span>
+              <span class="col-lg-1"><%=number_to_currency current_parent.total_funds%></span>
             </div></a>
           </td>
-          <td>
+          <td class= 'add-funds'>
              <a href="/charges/new"
-           class="btn btn-success btn-block" align="right"><h4>+ Add Funds</h4></a>
+           class="btn btn-success pull-right">
+           <h4>+ Add Funds</h4></a>
           </td>
       </tr>
     </table>

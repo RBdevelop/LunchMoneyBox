@@ -1,28 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lunchbox</title>
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"></link>
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"></link>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  
 
   <nav class="navigation">
     <div class="text-center navigation-text">
-      LunchMoneyBox.IO
+      LunchMoneyBox
+      <span class="pull-right" style='color:yellow'>
+        Beta
+      </span>
     </div>
   </nav>
-  <nav class="col-lg-12 navigation-bottom">
-    <div class="col-lg-4 col-md-4"><i class="fa fa-thumbs-o-up"></i>  SA Catering</div>
-    <div class="col-lg-4 col-md-4 text-center">
-        <h1>Add Credit to Account</h1>
+  <nav class="col-lg-12 col-md-12 col-sm-12 col-xs-12 navigation-bottom">
+    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+      <i class="fa fa-thumbs-o-up"></i>  SA Catering
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+        <h1>Add Credit to your account</h1>
     </div>
   </nav>
 
-
-  <article>
+<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+<h2>
+ <article>
     <label class="amount">
-      <span>Amount: $10.00</span>
+      <span>$20.00</span>
     </label>
   </article>
 
-
-  <button id="process-transaction" class="btn btn-primary btn-block">Submit Payment</button>
+<button id="process-transaction" class="btn btn-primary btn-block">Add to your LunchMoneyBox</button>
   <script src="https://checkout.stripe.com/checkout.js"></script>
-
-
+</h2>
+</div>
 
 
 <script>
@@ -33,7 +48,7 @@
      key: "<%=  Rails.configuration.stripe[:publishable_key] %>",
      name: "LunchMoneyBox",
      description: "A charge for a student meal",
-     amount: "1000",
+     amount: "2000",
      currency: "USD",
      panelLabel: "Submit Payment",
      zipCode: true,
@@ -62,7 +77,7 @@
       handler.open({
         name: 'LunchMoneyBox',
         description: 'LunchMoneyBox',
-        amount: 1000
+        amount: 2000
       });
       e.preventDefault();
    });
@@ -77,6 +92,8 @@
 });
 
 </script>
+</body>
+</html>
 
 
 
