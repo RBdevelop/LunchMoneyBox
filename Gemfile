@@ -29,6 +29,7 @@ gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem "pry"
 gem "pry-rails"
 
+gem 'rest-client'
 
 
 

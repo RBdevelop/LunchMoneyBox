@@ -14,10 +14,6 @@ class StudentsController < ApplicationController
     
   end
   
-  
-
-
-
   # GET /students/new
   def new
     @student = Student.new
@@ -26,6 +22,23 @@ class StudentsController < ApplicationController
   # GET /students/1/edit
   def edit
   end
+
+  module CreateStudentPos 
+   def self.create(student) 
+    payload = {first_name: student.first_name,
+              last_name:  student.last_name,
+              phone: '555-555-5555',
+              #tags: [student.grade],
+              reference_id: "student_#{student.id}"
+
+            }
+    RestClient.post 'https://api.kounta.com/v1/companies/9898/customers.json', payload, {:Authorization => 'Basic VXM1SzVkbjRvbGRabGNvNDp3YzFMWlozVHN4OVlBTklBdm1sUm5KMmRXc0JTU08xRHAxdXpmS01T'}
+    end
+
+  end
+
+
+
 
   # POST /students
   # POST /students.json
@@ -36,6 +49,8 @@ class StudentsController < ApplicationController
       if @student.save
         format.html { redirect_to dashboard_overview_path, notice: 'Student was successfully created.' }
         format.json { render :show, status: :created, location: @student }
+        CreateStudentPos.create @student
+        
       else
         format.html { render :new }
         format.json { render json: @student.errors, status: :unprocessable_entity }
