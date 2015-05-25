@@ -15,7 +15,6 @@
     <span class="pull-right" style='color:yellow'>
         Beta
       </span>
-      Beta
     </div>
   </nav>
 
@@ -60,8 +59,9 @@
           <td> 
             <div class="student-row col-lg-12"><a href="/dashboard/activity">
             <% current_parent.students.each do |student| %>
-            <%= student.first_name %> 
+            <%= student.first_name %>
             <% end %>
+
             </div>
           </a>
           </td>
