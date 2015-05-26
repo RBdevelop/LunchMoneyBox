@@ -58,10 +58,11 @@
       <tr>
           <td> 
             <div class="student-row col-lg-12"><a href="/dashboard/activity">
-            <% current_parent.students.each do |student| %>
-            <%= student.first_name %>
-            <% end %>
-
+              <% current_parent.students.each do |student| %>
+              <li>
+              <%= student.first_name %>
+              <% end %>
+              </li>
             </div>
           </a>
           </td>
