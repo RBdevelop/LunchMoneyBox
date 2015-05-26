@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head ng-app="app">
+<head>
   <title>Lunchbox</title>
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"></link>
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"></link>
@@ -8,7 +8,7 @@
 </head>
 <body>
  
-  <nav class="navigation">
+<!--   <nav class="navigation">
     <div class="text-center navigation-text">
       LunchMoneyBox.IO
     </div>
@@ -18,22 +18,39 @@
     <div class="col-lg-4 col-md-4 text-center">
         <h1>Add Credit to Account</h1>
     </div>
+  </nav> -->
+  <nav class="navigation">
+    <div class="text-center navigation-text">
+      LunchMoneyBox
+      <span class="pull-right" style='color:yellow'>
+        Beta
+      </span>
+    </div>
+  </nav>
+  <nav class="col-lg-12 col-md-12 col-sm-12 col-xs-12 navigation-bottom">
+    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+      <i class="fa fa-thumbs-o-up"></i>  SA Catering
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+        <h1>Add Credit to Account</h1>
+    </div>
   </nav>
 
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+    <h2>
+    <%= form_tag charges_path do %>
+      <article>
+        <label class="amount">
+          <span>Amount: $10.00</span>
+        </label>
+      </article>
 
-<h2>
-<%= form_tag charges_path do %>
-  <article>
-    <label class="amount">
-      <span>Amount: $10.00</span>
-    </label>
-  </article>
-
-  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-          data-description="Account Credit"
-          data-amount="1000"></script>
-  </h2>
+      <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+              data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+              data-description="Account Credit"
+              data-amount="1000"></script>
+    </h2>
+  </div>
 <% end %>
 
 </body>

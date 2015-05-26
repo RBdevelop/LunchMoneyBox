@@ -10,11 +10,16 @@
  
   <nav class="navigation">
     <div class="text-center navigation-text">
-      saconxepts.lunchbox.io
+      LunchMoneyBox
+      <span class="pull-right" style='color:yellow'>
+        Beta
+      </span>
     </div>
   </nav>
   <nav class="col-lg-12 col-md-12 col-sm-12 col-xs-12 navigation-bottom">
-    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center"><i class="fa fa-thumbs-o-up"></i>  SA Catering</div>
+    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+      <i class="fa fa-thumbs-o-up"></i>  SA Catering
+    </div>
     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
         <h1>Account Dashboard</h1>
     </div>
@@ -44,22 +49,36 @@
       
       <div class="panel-body">
         <div class="student-rows">
-        	 
-      <tr>
-        <td></td>
-          <a href="dashboard-2.html">
-            <div class="student-row col-lg-12">
-              <span class="col-lg-6">{{balance}}</span>
-            </div>
-          </a>
+                <table class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <tr>
+
+                      <td> 
+                        <div class="student-row col-lg-12"><a href="/dashboard/activity">
+                        <% current_parent.students.each do |student| %>
+                        <%= student.first_name %> 
+                        <% end %></a>
+                        </div>
+                      
+                      </td>
+                  
+                      <td>
+                        <a href="/dashboard/activity">
+                        <div class="student-row col-lg-12">
+                        <span class="col-lg-1">0.00</span>
+                        </div></a>
+                      </td>
+                      <td class="add-funds">
+                         <a href="/charges/new"
+                       class="btn btn-success  pull-right"><h4>+ Add Funds</h4></a>
+                      </td>
+                  </tr>
+                </table>
+
         </div>
       </div>
     </div>
   </div>
   
-  
-  <script src="bower_components/angular/angular.min.js"></script>
-  <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
   </body>
   <% end %>

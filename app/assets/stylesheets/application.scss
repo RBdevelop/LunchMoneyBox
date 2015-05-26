@@ -59,14 +59,17 @@ body{
   margin-top: 5em; 
 }
 .student-row{
-  border-bottom: 2px solid lightgray; 
-  border-top: 2px solid lightgray; 
-  margin-top: 20px;
+  // border-bottom: 2px solid lightgray; 
+  // border-top: 2px solid lightgray; 
+  // margin-top: 20px;
   font-size: 30px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+
 }
 .student-row:hover,
 .student-row:focus{
-  background-color: darkgray;
+  background-color: lightgray;
 }
 .date-text{
   font-size: 20px; 
@@ -79,4 +82,12 @@ body{
 }
 .transaction-history{
  border: 2px solid rgba(51,122,183,.8)
+}
+.add-funds{
+  width: 33%;
+}
+tr{
+   border-bottom: 2px solid lightgray; 
+  border-top: 2px solid lightgray; 
+  width: 100%;
 }
