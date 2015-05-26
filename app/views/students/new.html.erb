@@ -1,13 +1,31 @@
-<nav class="navigation">
-  <div class="text-center navigation-text">
-    saconxepts.lunchbox.io
-  </div>
-</nav>
+<!DOCTYPE html>
+<html>
+<head ng-app="app">
+  <title>Lunchbox</title>
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"></link>
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"></link>
+  <link rel="stylesheet" type="text/css" href="style.css">
 
-<% if parent_signed_in? %>
-<br>
-<p>Oh hey there,  <%= current_parent.first_name %></p>
-<p><%= link_to "Sign Out", destroy_parent_session_path, :method => 'delete' %></p>
+</head>
+<body>
+ 
+  <nav class="navigation">
+    <div class="text-center navigation-text">
+      LunchMoneyBox
+    <span class="pull-right" style='color:yellow'>
+        Beta
+      </span>
+      Beta
+    </div>
+  </nav>
+
+<h3>
+<% if parent_signed_in? %> 
+
+Oh hey there  <%= current_parent.first_name %> 
+</h3>
+<p> Not you? If so please <%= link_to "Sign_out", destroy_parent_session_path, :method => 'delete' %>
+</p>
 
 
 <div class="col-lg-4 col-lg-offset-4
@@ -22,4 +40,7 @@
   </div>
 
 </div>
+
 <% end %>
+
+</body>

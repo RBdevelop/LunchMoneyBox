@@ -5,17 +5,19 @@
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"></link>
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"></link>
   <link rel="stylesheet" type="text/css" href="style.css">
+
 </head>
 <body>
  
   <nav class="navigation">
     <div class="text-center navigation-text">
       LunchMoneyBox
-      <span class="pull-right" style='color:yellow'>
+    <span class="pull-right" style='color:yellow'>
         Beta
       </span>
     </div>
   </nav>
+<<<<<<< HEAD
   <nav class="col-lg-12 col-md-12 col-sm-12 col-xs-12 navigation-bottom">
     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
       <i class="fa fa-thumbs-o-up"></i>  SA Catering
@@ -49,31 +51,32 @@
       
       <div class="panel-body">
         <div class="student-rows">
-                <table class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                  <tr>
-
-                      <td> 
-                        <div class="student-row col-lg-12"><a href="/dashboard/activity">
-                        <% current_parent.students.each do |student| %>
-                        <%= student.first_name %> 
-                        <% end %></a>
-                        </div>
-                      
-                      </td>
+            <table class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <tr>
+                  <td> 
+                    <div class="student-row col-lg-12"><a href="/dashboard/activity">
+                    <% current_parent.students.each do |student| %>
+                    <%= student.first_name %>
+                    <% end %>
+                    </a>
+                    </div>
                   
-                      <td>
-                        <a href="/dashboard/activity">
-                        <div class="student-row col-lg-12">
-                        <span class="col-lg-1">0.00</span>
-                        </div></a>
-                      </td>
-                      <td class="add-funds">
-                         <a href="/charges/new"
-                       class="btn btn-success  pull-right"><h4>+ Add Funds</h4></a>
-                      </td>
-                  </tr>
-                </table>
+                  </td>
+              
+                  <td>
+                    <a href="/dashboard/activity">
+                    <div class="student-row col-lg-12">
 
+                      <span class="col-lg-1"><%=number_to_currency current_parent.total_funds%></span>
+                    </div></a>
+                  </td>
+                  <td class= 'add-funds'>
+                     <a href="/charges/new"
+                   class="btn btn-success pull-right">
+                   <h4>+ Add Funds</h4></a>
+                  </td>
+              </tr>
+          </table>
         </div>
       </div>
     </div>

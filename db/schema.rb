@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150513071530) do
+ActiveRecord::Schema.define(version: 20150520033119) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,15 @@ ActiveRecord::Schema.define(version: 20150513071530) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
+  create_table "charges", force: :cascade do |t|
+    t.integer  "parent_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.decimal  "amount"
+  end
+
+  add_index "charges", ["parent_id"], name: "index_charges_on_parent_id", using: :btree
+
   create_table "parents", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -64,10 +73,16 @@ ActiveRecord::Schema.define(version: 20150513071530) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
+    t.string   "stripe_id"
   end
 
   add_index "parents", ["email"], name: "index_parents_on_email", unique: true, using: :btree
   add_index "parents", ["reset_password_token"], name: "index_parents_on_reset_password_token", unique: true, using: :btree
+
+  create_table "payments", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "students", force: :cascade do |t|
     t.string   "first_name"
@@ -75,6 +90,11 @@ ActiveRecord::Schema.define(version: 20150513071530) do
     t.integer  "grade"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "parent_id"
   end
 
+  add_index "students", ["parent_id"], name: "index_students_on_parent_id", using: :btree
+
+  add_foreign_key "charges", "parents"
+  add_foreign_key "students", "parents"
 end

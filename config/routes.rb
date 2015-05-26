@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'dashboard/overview'
+  get '/dashboard/overview' => 'dashboard#overview', as: :dashboard_overview
 
   get 'dashboard/activity'
 
@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get 'dashboard/debits'
 
   get 'dashboard/reports'
+
+ 
 
   devise_for :parents
   
