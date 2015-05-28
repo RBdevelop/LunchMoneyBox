@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :orders
+
   get '/dashboard/overview' => 'dashboard#overview', as: :dashboard_overview
 
   get 'dashboard/activity'
