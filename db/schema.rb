@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150520033119) do
+ActiveRecord::Schema.define(version: 20150528090653) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,14 @@ ActiveRecord::Schema.define(version: 20150520033119) do
   end
 
   add_index "charges", ["parent_id"], name: "index_charges_on_parent_id", using: :btree
+
+  create_table "orders", force: :cascade do |t|
+    t.text     "description"
+    t.integer  "price"
+    t.date     "date"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "parents", force: :cascade do |t|
     t.string   "first_name"
