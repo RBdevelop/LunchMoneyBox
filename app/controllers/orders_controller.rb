@@ -30,10 +30,6 @@ end
 
 module GetOrdersStudent 
    def self.get(student) 
-       #payload = {total: order.price,
-        #          id:  order.id,
-        #     product: order.description,
-        #    }
         id= GetCustomerID.get(student)
         json_string = RestClient.get "https://api.kounta.com/v1/companies/9898/customers/#{id}/orders.json", {:Authorization => 'Basic VXM1SzVkbjRvbGRabGNvNDp3YzFMWlozVHN4OVlBTklBdm1sUm5KMmRXc0JTU08xRHAxdXpmS01T'}
         orders = ActiveSupport::JSON.decode(json_string)

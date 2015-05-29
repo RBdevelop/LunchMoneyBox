@@ -38,15 +38,15 @@
           <h1 class="text-center">Purchases</h1>
         </div>
         <div class="panel-body">
-          <% @orders.flat_map { |order| order["lines"] }.each do |order_item| %>
+           @orders.flat_map { |order| order["lines"] }.each do |order_item| 
           <div class="student-rows">
             <div class="col-lg-12 student-row ">
               <div class="col-lg-6">
-                <p class="meal-text"> <%= order_item['product']['name'] %></p>
+                <p class="meal-text">  order_item['product']['name'] </p>
                 <p class="text-muted date-text"> </p>
               </div>
               <div class="col-lg-6 meal-price">
-                <span class="pull-right"><%= order_item['unit_price'] %> <i class="fa fa-minus"></i></span>
+                <span class="pull-right"> order_item['unit_price']  <i class="fa fa-minus"></i></span>
               </div>
             </div>
             
@@ -112,7 +112,7 @@
       <h2><%= link_to 'Dashboard Home', dashboard_overview_path %> </h2>
   </div>  
 
-<% end %>
+ end 
 </body>
 </html>
 
