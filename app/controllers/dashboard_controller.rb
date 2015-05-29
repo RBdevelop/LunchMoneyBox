@@ -5,6 +5,10 @@ class DashboardController < ApplicationController
   end
 
   def activity
+      @orders = current_parent.students.flat_map do |student|
+      orders = OrdersController::GetOrdersStudent.get(student)
+      OrdersController::GetOrderDetail.get_orders(orders)
+    end
   end
 
   def credits
