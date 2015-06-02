@@ -16,57 +16,60 @@
     </div>
   </nav>
   <nav class="col-lg-12 navigation-bottom">
-    <div class="col-lg-4 col-md-4"><i class="fa fa-thumbs-o-up"></i>  SA Catering</div>
+    <div class="col-lg-4 col-md-4"><%= link_to 'Dashboard Home', dashboard_overview_path %>
+    </div>
     <div class="col-lg-4 col-md-4 text-center">
-    <div>
+    
         <h1> <% current_parent.students.each do |student| %>
             <%= student.first_name %> 
             <% end %>
         </h1>
     </div>
+   
+
     </nav>
     <% if parent_signed_in? %>
 
-  <div align="left" > <h3> Hi there  
-    <%=  current_parent.first_name %></h3>
+  <div align="left" > <h4> Hi there  
+    <%=  current_parent.first_name %></h4>
       <p> Not you ? <%= link_to "Sign_out", destroy_parent_session_path, :method => 'delete' %> </p>
   </div>  
-   <div class="">
-    <div class="col-lg-6 col-md-6 col-sm-6">
+  
+    <div class="col-lg-12 col-md-12 col-sm-12" >
       <div class="panels sign-panel login-panel panel panel-default transaction-history">
         <div class="panel-heading">
           <h1 class="text-center">Purchases</h1>
         </div>
         <div class="panel-body">
-           @orders.flat_map { |order| order["lines"] }.each do |order_item| 
+          <% @orders.flat_map { |order| order["lines"] }.each do |order_item| %>
           <div class="student-rows">
             <div class="col-lg-12 student-row ">
-              <div class="col-lg-6">
-                <p class="meal-text">  order_item['product']['name'] </p>
-                <p class="text-muted date-text"> </p>
-              </div>
-              <div class="col-lg-6 meal-price">
-                <span class="pull-right"> order_item['unit_price']  <i class="fa fa-minus"></i></span>
-              </div>
-            </div>
-            
+<!--               <div class="col-lg-6">
+ -->                <p class="meal-text">  <%= order_item['product']['name'] %> </p>
+<!--                 <p class="text-muted date-text"> </p>
+ -->          </div>
+             <!--    <div class="col-lg-6 meal-price"> -->
+                <span class="pull-right"> <%= order_item['unit_price'] %>  </span> 
+                 <% end %>
+             <!--  </div> -->
             </div>
           </div>
         </div>
-        <% end %>
       </div>
-    </div>
     
-    <div class="col-lg-6 col-md-6 col-sm-6">
-      <div class="panels sign-panel login-panel panel panel-default transaction-history">
+    
+   
+    
+     <div class="col-lg-12 col-md-12 col-sm-12" >
+    
         <div class="panel-heading">
-          <h1 class="text-center"><%=number_to_currency current_parent.total_funds%></h1>
+          <h1 class="text-center"> Current Balance</h1>
         </div>
         <div class="panel-body">
           <div class="student-rows">
             <div class="col-lg-12 student-row">
               <span class="pull-right">
-                <%=number_to_currency current_parent.total_funds%>
+                <%=number_to_currency current_parent.total_funds%> 
               </span>
             </div>
           </div>
@@ -74,8 +77,9 @@
         <a href="/charges/new"
            class="btn btn-success btn-block"><h3>+ Add Funds</h3></a>
       </div>
-      
-      <div class="panels sign-panel login-panel panel panel-default transaction-history">
+    
+
+     <!--  <div class="panels sign-panel login-panel panel panel-default transaction-history">
         <div class="panel-heading">
           <h1 class="text-center">Credits</h1>
         </div>
@@ -96,23 +100,19 @@
 
 
           </div>
-        </div>
+        </div> -->
       </div>
       
       
     </div>
   </div>
   
-  <script src="bower_components/angular/angular.min.js"></script>
+  
+
+ <% end %> 
+</body>
+ <script src="bower_components/angular/angular.min.js"></script>
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-
-
- <div align="left">
-      <h2><%= link_to 'Dashboard Home', dashboard_overview_path %> </h2>
-  </div>  
-
- end 
-</body>
 </html>
 

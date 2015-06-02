@@ -51,6 +51,15 @@ module GetOrderDetail
     end
 end
 
+# def self.get(order) 
+#         id= order['id']
+#         json_string = RestClient.get "https://api.kounta.com/v1/companies/9898/orders/#{id}.json", {:Authorization => 'Basic VXM1SzVkbjRvbGRabGNvNDp3YzFMWlozVHN4OVlBTklBdm1sUm5KMmRXc0JTU08xRHAxdXpmS01T'}
+#         order = ActiveSupport::JSON.decode(json_string)
+#             return  order
+#     end
+# end
+
+
 	def create
     @order = Order.new(order_params)
     @order.update_attributes(parent_id: current_parent.id)
