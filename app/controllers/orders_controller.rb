@@ -45,7 +45,6 @@ module GetOrderDetail
   
   def self.get(order) 
         id= order['id']
-        price =  order['unit_price']
         json_string = RestClient.get "https://api.kounta.com/v1/companies/9898/orders/#{id}.json", {:Authorization => 'Basic VXM1SzVkbjRvbGRabGNvNDp3YzFMWlozVHN4OVlBTklBdm1sUm5KMmRXc0JTU08xRHAxdXpmS01T'}
         order = ActiveSupport::JSON.decode(json_string)
             return  order
